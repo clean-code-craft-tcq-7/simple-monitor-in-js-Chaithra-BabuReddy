@@ -2,10 +2,13 @@ import { expect } from 'chai';
 import { isTemperatureOk, isStateOfChargeOk, isChargeRateOk } from './batteryStateValidation.js';
 
 function batteryIsOk(temperature, soc, charge_rate) {
-    if (isTemperatureOk(temperature) && isStateOfChargeOk(soc) && isChargeRateOk(charge_rate)) {
+    if (evaluateBatteryState(temperature, soc, charge_rate)) {
         return true;
     }
     return false;
+}
+function evaluateBatteryState(temp, soc, chargeRate) {
+    return isTemperatureOk(temp) && isStateOfChargeOk(soc) && isChargeRateOk(chargeRate);
 }
 
 expect(batteryIsOk(25, 70, 0.7)).to.be.true;
