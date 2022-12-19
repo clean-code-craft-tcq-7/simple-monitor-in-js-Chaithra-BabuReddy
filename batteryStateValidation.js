@@ -1,20 +1,18 @@
-import { minTemperature, minStateOfCharge, minChargeRate, maxTemperature, maxStateOfCharge } from './batteryLimits.js';
+import { minTemperature, minStateOfCharge, maxChargeRate, maxTemperature, maxStateOfCharge } from './batteryLimits.js';
 
 export function isTemperatureOk(temperature) {
-    if (temperature < minTemperature || temperature > maxTemperature) {
-        return false;
-    }
-    return true;
+    return checkLimitsInRange(temperature, minTemperature, maxTemperature);
 }
 export function isStateOfChargeOk(soc) {
-    if (soc < minStateOfCharge || soc > maxStateOfCharge) {
+    return checkLimitsInRange(soc, minStateOfCharge, maxStateOfCharge);
+}
+export function isChargeRateOk(charge_rate) {
+    return checkLimitsInRange(charge_rate, 0, maxChargeRate);
+}
+
+function checkLimitsInRange(value, minThreshold, maxThreshold) {
+    if (value < minThreshold || value > maxThreshold) {
         return false;
     }
     return true;
-}
-export function isChargeRateOk(charge_rate) {
-    if (charge_rate > minChargeRate) {
-        return false;
-    } 
-        return true;
 }
