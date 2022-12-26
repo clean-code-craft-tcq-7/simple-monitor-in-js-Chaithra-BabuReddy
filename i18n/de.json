@@ -1,0 +1,5 @@
+{
+    "tempOutOfRange": "Die Temperatur liegt außerhalb des Bereichs!",
+        "socOutOfRange": "Ladungszustand liegt außerhalb des Bereichs!",
+            "crOutOfRange": "Ladungsrate liegt außerhalb des Bereichs!"
+}

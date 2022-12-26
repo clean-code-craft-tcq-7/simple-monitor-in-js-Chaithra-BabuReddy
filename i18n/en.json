@@ -1,0 +1,5 @@
+{
+    "tempOutOfRange": "Temperature is out of range!",
+    "socOutOfRange": "State of Charge is out of range!",
+    "crOutOfRange": "Charge rate is out of range!"
+}
