@@ -1,7 +1,6 @@
 import {
     minTempThreshold, minSocThreshold, maxChargeRateThreshold, maxTempThreshold,
-    maxSocThreshold, minChargeRateThreshold, minSoc_discharge_ToleranceLimit, maxSoc_discharge_ToleranceLimit,
-    minSoc_chargepeak_ToleranceLimit, maxSoc_chargepeak_ToleranceLimit
+    maxSocThreshold, minChargeRateThreshold, minSoc_tolernaceLimit, maxSoc_ToleranceLimit
 } from './batteryLimits.js';
 import { printErrorMessageOnConsole } from "./printErrMssgOnConsole.js";
 import { alertWarning_If_Limits_In_Lower_TLR_Range, alertWarning_If_Limits_In_Upper_TLR_Range } from "./alertWarning.js"
@@ -11,7 +10,7 @@ const require = createRequire(import.meta.url);
 const enJSON = require('./i18n/en.json'); //importing .json into ES Modules 
 const deJson = require('./i18n/de.json');
 
-var currentLanguage = 'de';
+var currentLanguage = 'en'; // variable changes when user changes language settings from UI. default english is choosen.
 var translationObject = enJSON;
 if (currentLanguage === 'de') {
     translationObject = deJson;
@@ -26,8 +25,8 @@ function isTemperatureOk(temperature) {
 }
 
 function isStateOfChargeOk(soc) {
-    alertWarning_If_Limits_In_Lower_TLR_Range(soc, minSoc_discharge_ToleranceLimit, maxSoc_discharge_ToleranceLimit);
-    alertWarning_If_Limits_In_Upper_TLR_Range(soc, minSoc_chargepeak_ToleranceLimit, maxSoc_chargepeak_ToleranceLimit);
+    alertWarning_If_Limits_In_Lower_TLR_Range(soc, minSocThreshold, minSoc_tolernaceLimit);
+    alertWarning_If_Limits_In_Upper_TLR_Range(soc, maxSoc_ToleranceLimit, maxSocThreshold);
     return isLimitsWithinThreshold(translationObject.socOutOfRange, soc, minSocThreshold, maxSocThreshold);
 }
 
